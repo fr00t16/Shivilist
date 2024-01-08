@@ -1,6 +1,5 @@
 const { exec } = require('child_process');
 const readline = require('readline');
-const chalk = require('chalk');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -17,18 +16,17 @@ function openTerminalAndRun(command) {
 
   exec(terminalCommand, (error, stdout, stderr) => {
     if (error) {
-      console.error(chalk.red(`Error: ${error.message}`));
+      console.error('\x1b[31m%s\x1b[0m', `Error: ${error.message}`);
       return;
     }
     if (stderr) {
-      console.error(chalk.red(`Error: ${stderr}`));
+      console.error('\x1b[31m%s\x1b[0m', `Error: ${stderr}`);
       return;
     }
-    console.log(chalk.green(`Command executed: ${command}`));
+    console.log('\x1b[32m%s\x1b[0m', `Command executed: ${command}`);
     startMenu();
   });
 }
-
 
 	const cuy = `
 	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -61,28 +59,32 @@ function openTerminalAndRun(command) {
 	By An Halim, Rizal S, Faizal R														 
 	`;
 
-function displayMenu() {
-  console.log(chalk.red(cuy));
-  console.log(chalk.green('1. LIVE STREAM'));
-  console.log(chalk.green('2. Auto Pin Produk + Spill Voucher + Get Sales'));
-  console.log(chalk.green('3. Auto Pin Produk + (Fake Claim Voc) + Get Sales'));
-}
+  
+  function displayMenu() {
+    console.log('\x1b[31m%s\x1b[0m', cuy);
+    console.log('\x1b[32m%s\x1b[0m', '1. LIVE STREAM');
+    console.log('\x1b[32m%s\x1b[0m', '2. Auto Pin Produk + Spill Voucher + Get Sales');
+    console.log('\x1b[32m%s\x1b[0m', '3. Auto Pin Produk + (Fake Claim Voc) + Get Sales');
+    console.log();
+  }
+  
+  function startMenu() {
+    displayMenu();
+  
+    rl.question('\x1b[32m%s\x1b[0m', 'Pilih fitur (1/3): ', (answer) => {
+      if (answer === '1') {
+        openTerminalAndRun('node LIVESTREAM.js');
+      } else if (answer === '2') {
+        openTerminalAndRun('node SPILLVOC.js');
+      } else if (answer === '3') {
+        openTerminalAndRun('node FAKEVOC.js');
+      } else {
+        console.log('Pilihan tidak valid..');
+        startMenu();
+      }
+    });
+  }
+  
+  startMenu();
 
-function startMenu() {
-  displayMenu();
 
-  rl.question(chalk.green('Pilih fitur (1/3): '), (answer) => {
-    if (answer === '1') {
-      openTerminalAndRun('node LIVESTREAM.js'); 
-    } else if (answer === '2') {
-      openTerminalAndRun('node SPILLVOC.js'); 
-    } else if (answer === '3') {
-      openTerminalAndRun('node FAKEVOC.js'); 
-    } else {
-      console.log(chalk.red('Pilihan tidak valid.'));
-      startMenu();
-    }
-  });
-}
-
-startMenu();
