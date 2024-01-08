@@ -82,7 +82,7 @@ const Action = require("./libs/action");
 				logger(pinNewItem.err_msg);
 			}
 			await action.getSales();
-			await sleep(71000);
+			await randomSleep(63000, 73000);
 		} catch (error) {
 			logger(error);
 		}
