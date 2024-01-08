@@ -11,7 +11,7 @@ rl.question('Enter the RTMP link and Stream KEY: ', (rtmpLink) => {
       ffmpeg()
         .input(inputVideo)
         .inputOptions(['-re', 
-                       '-stream_loop -1',
+                       '-stream_loop -1'
                       ])
         .videoCodec('copy')
         .audioCodec('copy')
