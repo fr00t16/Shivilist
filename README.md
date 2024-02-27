@@ -1,2 +1,2 @@
 # shipilivitiiils
-Caranya check group ae bang
+Welcome to shipilivitiiils this project make for education
