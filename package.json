@@ -1,5 +1,5 @@
 {
-  "name": "shopeelivetools",
+  "name": "shipilivitiiils",
   "version": "1.0.1",
   "description": "shopee live tools",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "an-halim, FR",
+  "author": "Froot16",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.4",
