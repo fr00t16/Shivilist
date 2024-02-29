@@ -10,19 +10,16 @@ rl.question('Enter the RTMP link and Stream KEY: ', (rtmpLink) => {
   rl.question('Enter Video Name: ', (inputVideo) => {
       ffmpeg()
         .input(inputVideo)
-        .inputOptions(['-stream_loop -1'])
-        .videoCodec('libx264')
-        .audioCodec('aac')
+        .inputOptions(['-re', 
+                       '-stream_loop -1'
+                      ])
+        .videoCodec('copy')
+        .audioCodec('copy')
         .outputOptions([
-        '-preset', 'slow',
-        '-crf', '23',
-        '-pix_fmt', 'yuv420p',
-        '-profile:v', 'main',
-        '-level', '4.1',
-        '-b:v', '2500k',
+        '-preset', 'veryfast',
         '-r', '30',
-        '-g', '60',
-        '-b:a', '128k',
-        '-ac', '2',
-        '-ar', '44100',
+        '-b:v' '2000k',
+        '-f', 'flv',
+        '-flvflags', 'no_duration_filesize',
+        '-stimeout', '-1',
       ])
